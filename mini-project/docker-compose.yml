@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  app:
+    build: 
+      context: '../../mini-code'
+      dockerfile: mini-project/Dockerfile
+    container_name: mini-proj
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - 3000:3000
+    volumes:
+      - '.:/usr/usr/appl'
+    command: sleep infinity
+    depends_on:
+      - postgres
+    networks:
+      - be
+      - localstack_default
+
+  postgres:
+    container_name: postgres-mini-proj
+    hostname: postgres
+    image: postgres:13
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    env_file: .env
+    volumes:
+      - postgres_volume:/var/lib/postgres/data
+    networks:
+      - be
+      - localstack_default
+  
+  # mongodb:
+
+volumes:
+  postgres_volume: {}
+  # mongodb_volume: {}
+
+networks:
+  localstack_default:
+    external: true
+  be:

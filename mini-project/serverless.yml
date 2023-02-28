@@ -1,0 +1,34 @@
+service: mini-project
+frameworkVersion: '3'
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  environment:
+    DATABASE_URL: ${env:DATABASE_URL}
+
+
+functions:
+  main:
+    handler: dist/src/main.handler
+    events:
+      - http:
+          method: ANY
+          path: /
+      - http:
+          method: ANY
+          path: '{proxy+}'
+
+plugins:
+  - serverless-localstack
+
+custom:
+  localstack:
+    debug: true
+    stages: [local]
+    host: http://localhost.localstack.cloud 
+    edgePort: 4566 
+    networks:
+      - mini-project_be
