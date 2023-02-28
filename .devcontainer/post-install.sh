@@ -7,7 +7,7 @@ echo "############# Creating ENV File #############"
 cp .env.sample .env
 
 echo "############# Initializing Database #############"
-npx prisma migrate dev --name "init"
+npx prisma migrate dev --schema=./src/infra/database/schema.prisma --name "init"
 
 npx prisma db seed
 
