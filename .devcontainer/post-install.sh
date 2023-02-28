@@ -13,8 +13,6 @@ npx prisma db seed
 
 echo "############# Setting-up Application #############"
 
-rm -rf dist
-
 npm run build
 
 echo "############# Deploying the Application #############"

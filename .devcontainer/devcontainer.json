@@ -3,7 +3,7 @@
 {
 	"name": "Mini-project",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"dockerComposeFile": "../mini-project/docker-compose.yml",
+	"dockerComposeFile": "../docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/usr/usr/appl/",
 
@@ -18,7 +18,7 @@
 	"forwardPorts": [ 3000, 5432 ],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "bash $(pwd)/post-install.sh",
+	"postCreateCommand": "bash $(pwd)/.devcontainer/post-install.sh",
 
 
 	// Configure tool-specific properties.
